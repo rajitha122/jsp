@@ -6,20 +6,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
+//declaration
 <%!
 String[] names={"green","cyan","black","red","yellow","pink"};
 
 %>
 <body>
 <h1>list of colors</h1>
-<table border="0">
+<table border="15">
 <th>name</th>
+scriplets
 <%
 for(int i=0;i<names.length;i++)
 {
 %>
 <tr>
-<td bgcolor="<%=names[i] %>"width="200"><%=names[i] %></td>
+<td bgcolor="<%=names[i] %>"width="900"><%=names[i] %></td>//expresions
 </tr>
 <% 
 }
