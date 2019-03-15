@@ -1,6 +1,6 @@
 <%@page contentType="text/html"%>
 <%@page pageEncoding="UTF-8"%>
-<%@page language="java" import="java.sql.*" %>
+<%@page language="java" import="java.sql.*"  %>
 
 <%
 String UserId=request.getParameter("txtuserid");
@@ -17,9 +17,11 @@ String Address=request.getParameter("txtaddress");
 String Pincode=request.getParameter("txtpincode");
 String AnnualIncome=request.getParameter("txtannualincome");
 try {
-    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-    Connection con=DriverManager.getConnection("jdbc:odbc:pubs","sa","playware");
-    PreparedStatement s=con.prepareStatement("Update CustomerRegister set Password=?,ConfirmPassword=?,FirstName=?,LastName=?,Gender=?,Age=?,TelephoneNo=?,MobileNo=?,Email=?,Address=?,Pincode=?,AnnualIncome=? where UserId=?");
+	Class.forName("com.mysql.jdbc.Driver");  
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3307/mysqljdbc","root","rajitha");  
+    PreparedStatement s=con.prepareStatement("Insert into Customerregister"+
+    "(Password,Confirm,FirstName,LastName,Gender,Age,TelephoneNo,MobileNo,Email,Address,Pincode,AnnualIncome) values" 
+    +"(?,?,?,?,?,?,?,?,?,?,?,?)" );
     s.setString(1,Password);
     s.setString(2,Confirm);
     s.setString(3,FirstName);
@@ -32,7 +34,7 @@ try {
     s.setString(10,Address);
     s.setString(11,Pincode);
     s.setString(12,AnnualIncome);
-    s.setString(13,UserId);
+   // s.setString(13,UserId);
     s.executeUpdate();
     
     out.println("<font color=red size=7>User Details Successfully Updated </font><BR/><BR/>");
